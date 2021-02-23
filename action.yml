@@ -1,6 +1,10 @@
 name: 'Publish WebPart NPM Package'
 description: 'This action will publish a NPM package'
-
+inputs:
+  access-token:
+    description: 'GitHub Registry Package Access Token'
+    required: true
+    
 runs:
   using: 'composite'
   steps: 
@@ -8,7 +12,7 @@ runs:
       shell: bash
     - run: mv ./dist/src/* ./dist/
       shell: bash
-    - run: echo "//registry.npmjs.org/:_authToken=${{ secrets.GPR_ACCESS_TOKEN }}" > ~/.npmrc
+    - run: echo "//registry.npmjs.org/:_authToken=${{ inputs.access-token }}" > ~/.npmrc
       shell: bash
     - run: npm publish
       shell: bash
