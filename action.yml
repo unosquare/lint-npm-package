@@ -14,5 +14,5 @@ runs:
       shell: bash
     - run: echo "//registry.npmjs.org/:_authToken=${{ inputs.access-token }}" > ~/.npmrc
       shell: bash
-    - run: npm publish
+    - run: export NODE_AUTH_TOKEN=${{ inputs.access-token }}; npm publish
       shell: bash
